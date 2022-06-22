@@ -29,7 +29,17 @@ def getData(site):
 
     print("=============================================================")
 
-print("### FUNDOS IMOBILIARIOS ###")
-fund = (input('Fundo: '))
-varsite = 'https://www.fundsexplorer.com.br/funds/' + fund
-getData(varsite)
+def menu():
+    print('\n1 - Consultar fundo')
+    print('2 - Encerrar programa')
+    opcao = int(input('Opção: '))
+    if opcao == 1:
+        fund = (input('Fundo: '))
+        varsite = 'https://www.fundsexplorer.com.br/funds/' + fund
+        getData(varsite)
+        menu()
+    elif opcao == 2:
+        exit()
+
+print('### FUNDOS IMOBILIARIOS ###')
+menu()
