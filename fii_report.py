@@ -1,20 +1,19 @@
-import requests
-from bs4 import BeautifulSoup
-
 def getData(site):
+    import requests
+    from bs4 import BeautifulSoup
 
-    cabecalho =     {'user-agent': 'Mozilla/5.0'}
-    retorno =       requests.get(site, headers = cabecalho)
-    pagina =        BeautifulSoup(retorno.content, 'html.parser')
+    cabecalho = {'user-agent': 'Mozilla/5.0'}
+    retorno = requests.get(site, headers = cabecalho)
+    pagina = BeautifulSoup(retorno.content, 'html.parser')
 
-    nomeFundo =     pagina.find('h3', attrs={'class': 'section-subtitle'}).text
-    precoCota =     pagina.find('span', attrs={'class': 'price'}).text
-    lista_indic =   pagina.find_all('span', attrs={'class': 'indicator-title'})
+    nomeFundo = pagina.find('h3', attrs={'class': 'section-subtitle'}).text
+    precoCota = pagina.find('span', attrs={'class': 'price'}).text
+    lista_indic = pagina.find_all('span', attrs={'class': 'indicator-title'})
     lista_valores = pagina.find_all('span', attrs={'class': 'indicator-value'})
     try:
-        variacao =  pagina.find('span', attrs={'class': 'percentage positive'}).text
+        variacao = pagina.find('span', attrs={'class': 'percentage positive'}).text
     except:
-        variacao =  pagina.find('span', attrs={'class': 'percentage negative'}).text
+        variacao = pagina.find('span', attrs={'class': 'percentage negative'}).text
 
     print("=============================================================")
 
@@ -40,6 +39,9 @@ def menu():
         menu()
     elif opcao == 2:
         exit()
+    else:
+        print('Opção inválida. Escolha novamente.')
+        menu()
 
 print('### FUNDOS IMOBILIARIOS ###')
 menu()
